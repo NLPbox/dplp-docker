@@ -10,4 +10,8 @@ mv $1.out $1.xml # rename CoreNLP output file for DPLP's convert.py script
 python convert.py $(dirname $1) &>> $1.log
 python segmenter.py $(dirname $1) &>> $1.log
 python rstparser.py $(dirname $1) False &>> $1.log
+
+# To construct RST trees out of DPLPs output, you'll need to look at
+# the last column of the .merge file and the .brackets file.
+cat $1.merge
 cat $1.brackets
