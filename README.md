@@ -437,3 +437,6 @@ was donated to the State of Israel.
 
 # Citation
 
+Yangfeng Ji, Jacob Eisenstein (2014).
+[Representation Learning for Text-level Discourse Parsing](http://www.anthology.aclweb.org/P/P14/P14-1002.pdf).
+Proceedings of the 52nd Annual Meeting of the Association for Computational Linguistics, pages 13-24.
