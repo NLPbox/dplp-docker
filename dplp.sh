@@ -6,6 +6,7 @@ cd /opt/corenlp
     &>> $1.log
 
 cd /opt/DPLP
+mv $1.out $1.xml # rename CoreNLP output file for DPLP's convert.py script
 python convert.py $(dirname $1) &>> $1.log
 python segmenter.py $(dirname $1) &>> $1.log
 python rstparser.py $(dirname $1) False &>> $1.log
