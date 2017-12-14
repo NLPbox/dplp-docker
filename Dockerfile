@@ -7,7 +7,8 @@ WORKDIR /opt
 RUN git clone https://github.com/jiyfeng/DPLP
 
 ADD dplp.sh /opt/DPLP/
-ADD input_long.txt /opt/DPLP/data/
+ADD input_long.txt output_break.txt /opt/DPLP/data/
+ADD output_break.txt /opt/DPLP/
 
 WORKDIR /opt/DPLP
 ENTRYPOINT ["./dplp.sh"]

@@ -13,5 +13,5 @@ python rstparser.py $(dirname $1) False &>> $1.log
 
 # To construct RST trees out of DPLPs output, you'll need to look at
 # the last column of the .merge file and the .brackets file.
-cat $1.merge
-cat $1.brackets
+cat $1.merge output_break.txt $1.brackets > complete_output.txt
+cat complete_output.txt
