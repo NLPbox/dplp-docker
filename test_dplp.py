@@ -25,7 +25,7 @@ RELATIONS:
 
 def test_dplp():
     """The DPLP parser produces the expected output."""
-    parser = sh.Command('/opt/DPLP/dplp.sh')
-    parser_stdout = parser('/opt/DPLP/data/input_short.txt')
+    parser = sh.Command('./dplp.sh')
+    parser_stdout = parser('data/input_short.txt')
     assert parser_stdout == EXPECTED_OUTPUT
 
