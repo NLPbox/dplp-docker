@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INPUT_ABSPATH=$(readlink -e $1)
 INPUT_DIRPATH="$(dirname "$(readlink -e $1)")"

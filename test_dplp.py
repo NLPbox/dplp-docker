@@ -35,5 +35,5 @@ def test_dplp():
     print("result.stdout: ", result.stdout)
     print("EXPECTED_OUTPUT: ", EXPECTED_OUTPUT)
     print("result.stderr: ", result.stderr)
-    assert result.stdout == EXPECTED_OUTPUT, result.stderr
+    assert result.stdout == EXPECTED_OUTPUT, result.stderr.encode('utf-8')
 
