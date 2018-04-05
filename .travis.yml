@@ -1,8 +1,8 @@
 sudo: required
 
-language: python
-python:
-  - "2.7"
+#language: python
+#python:
+#  - "2.7"
 
 services:
   - docker
@@ -10,12 +10,13 @@ services:
 before_install:
   - docker build -t dplp .
   - docker run --entrypoint=/bin/bash -ti dplp -c py.test test_dplp.py
+  - docker ps -a
 
 # command to install dependencies
-install:
-  - pip install pytest sh
+#install:
+#  - pip install pytest sh
 
 
 # command to run tests
-script:
-  - py.test test_dplp.py
+#script:
+#  - py.test test_dplp.py
