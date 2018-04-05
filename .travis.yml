@@ -7,10 +7,13 @@ sudo: required
 services:
   - docker
 
-before_install:
+#before_install:
+install:
   - docker build -t dplp .
+
+script:
   - docker run --entrypoint=/bin/bash -ti dplp -c py.test test_dplp.py
-  - docker ps -a
+#  - docker ps -a
 
 # command to install dependencies
 #install:
