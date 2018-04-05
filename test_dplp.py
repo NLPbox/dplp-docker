@@ -26,6 +26,11 @@ RELATIONS:
 def test_dplp():
     """The DPLP parser produces the expected output."""
     parser = sh.Command('./dplp.sh')
-    parser_stdout = parser('data/input_short.txt')
-    assert parser_stdout == EXPECTED_OUTPUT
+    result = parser('data/input_short.txt')
+
+    #~ import pudb; pudb.set_trace()
+    import os
+    print("pwd: ", os.getcwd())
+    print("ls: ", os.listdir('.'))
+    assert result.stdout == EXPECTED_OUTPUT, result.stderr
 
