@@ -10,7 +10,8 @@ WORKDIR /opt
 RUN git clone https://github.com/arne-cl/DPLP.git
 
 
-RUN pip install pytest sh pudb # FIXME: remove after testing
+RUN pip install pytest sh
+RUN pip install pudb # FIXME: remove after testing
 
 
 ADD dplp.sh test_dplp.py /opt/DPLP/
