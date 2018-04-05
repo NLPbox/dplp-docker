@@ -11,13 +11,9 @@ RUN git clone https://github.com/arne-cl/DPLP.git
 
 
 RUN pip install pytest sh
-RUN pip install pudb # FIXME: remove after testing
-
 
 ADD dplp.sh test_dplp.py /opt/DPLP/
 ADD input_long.txt input_short.txt output_break.txt /opt/DPLP/
-
-
 
 WORKDIR /opt/DPLP
 ENTRYPOINT ["./dplp.sh"]

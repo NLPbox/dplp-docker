@@ -27,13 +27,5 @@ def test_dplp():
     """The DPLP parser produces the expected output."""
     parser = sh.Command('./dplp.sh')
     result = parser('input_short.txt')
-
-    #~ import pudb; pudb.set_trace()
-    import os
-    print("pwd: ", os.getcwd())
-    print("ls: ", os.listdir('.'))
-    print("result.stdout: ", result.stdout)
-    print("EXPECTED_OUTPUT: ", EXPECTED_OUTPUT)
-    print("result.stderr: ", result.stderr)
     assert result.stdout == EXPECTED_OUTPUT, result.stderr.encode('utf-8')
 
