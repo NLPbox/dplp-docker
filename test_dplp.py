@@ -24,6 +24,22 @@ RELATIONS:
 
 EXPECTED_PARSETREE = """ParentedTree('NS-elaboration', [ParentedTree('EDU', ['1']), ParentedTree('EDU', ['2'])])"""
 
+EXPECTED_RS3 = """<?xml version='1.0' encoding='UTF-8'?>
+<rst>
+  <header>
+    <relations>
+      <rel name="elaboration" type="rst"/>
+    </relations>
+  </header>
+  <body>
+    <segment id="3" parent="1" relname="span">Although they didn't like it,</segment>
+    <segment id="5" parent="3" relname="elaboration">they accepted the offer.</segment>
+    <group id="1" type="span"/>
+  </body>
+</rst>
+"""
+
+
 def test_dplp():
     """The DPLP parser produces the expected output."""
     parser = sh.Command('./dplp.sh')
@@ -33,3 +49,8 @@ def test_dplp():
     with open('input_short.txt.parsetree', 'r') as parse_file:
         assert parse_file.read() == EXPECTED_PARSETREE
 
+    converter = sh.Command('./dplp2rs3.sh')
+    result = converter('input_short.txt.parsetree', 'input_short.txt.merge')
+
+    with open('input_short.txt.rs3', 'r') as rs3_file:
+        assert rs3_file.read() == EXPECTED_RS3
