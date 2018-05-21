@@ -33,9 +33,10 @@ python segmenter.py $INPUT_DIRPATH &>> $INPUT_ABSPATH.log
 # rstparser.py converts all .merge files in the input file's directory into .brackets files
 # NOTE: this can be used for batch processing
 # NOTE: this loads a model on startup, so idealy this would be a service of its own
-python rstparser.py $INPUT_DIRPATH False &>> $INPUT_ABSPATH.log
+python rstparser.py $INPUT_DIRPATH True &>> $INPUT_ABSPATH.log
 
 # To construct RST trees out of DPLPs output, you'll need to look at
 # the last column of the .merge file and the .brackets file.
+# Alternatively, you can use the nltk Tree's that my modified code writes to the .parsetree file.
 cat $INPUT_ABSPATH.merge output_break.txt $INPUT_ABSPATH.brackets > complete_output.txt
 cat complete_output.txt

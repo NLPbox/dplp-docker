@@ -22,10 +22,14 @@ RELATIONS:
 ((2, 2), 'Satellite', 'elaboration')
 """
 
+EXPECTED_PARSETREE = """ParentedTree('NS-elaboration', [ParentedTree('EDU', ['1']), ParentedTree('EDU', ['2'])])"""
 
 def test_dplp():
     """The DPLP parser produces the expected output."""
     parser = sh.Command('./dplp.sh')
     result = parser('input_short.txt')
     assert result.stdout == EXPECTED_OUTPUT, result.stderr.encode('utf-8')
+
+    with open('input_short.txt.parsetree', 'r') as parse_file:
+        assert parse_file.read() == EXPECTED_PARSETREE
 
