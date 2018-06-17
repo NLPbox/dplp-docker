@@ -2,9 +2,13 @@ version: '3.3'
 services:
   corenlp:
     image: "nlpbox/corenlp:3.9.1"
+    environment:
+      - JAVA_XMX=3g
     ports:
       - "9000:9000"
   dplp:
     build: .
     environment:
       - CORENLP_ENDPOINT=http://corenlp:9000
+    ports:
+      - "9001:8000"
