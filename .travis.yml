@@ -2,11 +2,10 @@ sudo: required
 
 services:
   - docker
-  - docker-compose
 
 install:
-  - docker-compose build
+  - docker build -t dplp .
 
 script:
-  - docker start dplpdocker_corenlp_1
-  - docker run --net host --entrypoint=/bin/bash -ti dplpdocker_dplp -c py.test test_dplp.py
+  - docker run -d -p 9000:9000 -ti nlpbox/corenlp:3.9.1
+  - docker run --net host --entrypoint=/bin/bash -ti dplp -c py.test test_dplp.py
