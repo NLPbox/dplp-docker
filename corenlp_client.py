@@ -9,7 +9,6 @@ import sys
 import requests
 
 
-
 CORENLP_PROPERTIES = {
     "annotators": "tokenize,ssplit,pos,lemma,ner,parse",
     "ssplit.eolonly": "false",
@@ -48,12 +47,10 @@ if __name__ == '__main__':
 
     if not server_result.ok:
         err_msg = (u"The CoreNLP server at '{0}' responded with error code"
-                   "'{1}' and this message: '{2}'")
+                   "and this message: '{2}'")
         sys.exit(err_msg.format(args.corenlp_endpoint,
-                                server_result.status,
                                 server_result.content))
 
-    #~ import pudb; pudb.set_trace()
     if isinstance(args.output_file, str):  # if we're not piping to stdout ...
         with open(args.output_file, 'wb') as outfile:
             outfile.write(server_result.content)
