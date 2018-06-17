@@ -1,8 +1,8 @@
-FROM nlpbox/corenlp:3.6.0
+FROM ubuntu:16.04
 
 # We can't use nltk from the repos, as it has a nltk tree drawing bug
 RUN apt-get update -y && \
-    apt-get install -y python-scipy python-numpy python-sklearn python-pip && \
+    apt-get install -y git python-scipy python-numpy python-sklearn python-pip && \
     pip install nltk==3.2.5
 
 # we need discoursegraphs for conversion to .rs3
@@ -14,7 +14,7 @@ RUN git clone https://github.com/arne-cl/discoursegraphs.git
 SHELL ["/bin/bash", "-c"]
 
 WORKDIR /opt/discoursegraphs
-RUN apt-get install -y python-dev python-pip git graphviz graphviz-dev \
+RUN apt-get install -y python-dev python-pip graphviz graphviz-dev \
     libxml2-dev libxslt-dev && rm -rf /var/lib/apt/lists/* && \
     pip2 install virtualenvwrapper==4.8.2 && \
     echo "export WORKON_HOME=$HOME/.virtualenvs" > ~/.profile && \
@@ -35,9 +35,9 @@ WORKDIR /opt
 RUN git clone https://github.com/arne-cl/DPLP.git
 
 
-RUN pip install pytest sh
+RUN pip install pytest sh requests
 
-ADD dplp.sh test_dplp.py dplp2rs3.* input_long.txt input_short.txt output_break.txt /opt/DPLP/
+ADD dplp.sh test_dplp.py dplp2rs3.* corenlp_client.py input_long.txt input_short.txt output_break.txt /opt/DPLP/
 
 
 WORKDIR /opt/DPLP

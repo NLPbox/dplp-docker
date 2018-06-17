@@ -10,17 +10,8 @@ INPUT_DIRPATH="$(dirname "$(readlink -e $1)")"
 # NOTE: dplp.sh MUST be called from this directory only!
 # NOTE: the path to the input file MUST be an absolute path!
 
-cd /opt/corenlp
-
-# CoreNLP will take input.txt and return intput.txt.out (CoreNLP XML containing tokenization, POS tags etc
-/usr/bin/java -mx2g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLP \
-    -annotators tokenize,ssplit,pos,lemma,ner,parse -ssplit.eolonly \
-    -tokenize.whitespace true -file $INPUT_ABSPATH -outputDirectory $INPUT_DIRPATH \
-    &>> $INPUT_ABSPATH.log
-
-mv $INPUT_ABSPATH.out $INPUT_ABSPATH.xml # rename CoreNLP output file for DPLP's convert.py script
-
-cd $SCRIPTDIR
+# call CoreNLP server and parse the input text file.
+python corenlp_client.py --corenlp-endpoint $CORENLP_ENDPOINT $INPUT_ABSPATH $INPUT_ABSPATH.xml &>> $INPUT_ABSPATH.log
 
 # convert.py converts all CoreXML .xml files in the input file's directory into .conll files (9 columns)
 python convert.py $INPUT_DIRPATH &>> $INPUT_ABSPATH.log
