@@ -17,6 +17,16 @@ else
     python corenlp_client.py --corenlp-endpoint $CORENLP_ENDPOINT $INPUT_ABSPATH $INPUT_ABSPATH.xml &>> $INPUT_ABSPATH.log
 fi
 
+# test if CoreNLP client succeeded
+if [ $? -eq 0 ]; then
+  echo "Successfully parsed input file ..."
+else
+  echo "Could not parse input file ..."
+  cat $INPUT_ABSPATH.log
+  exit 1
+fi
+
+
 # convert.py converts all CoreXML .xml files in the input file's directory into .conll files (9 columns)
 python convert.py $INPUT_DIRPATH &>> $INPUT_ABSPATH.log
 
