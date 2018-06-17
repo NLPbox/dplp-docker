@@ -19,7 +19,7 @@ fi
 
 # test if CoreNLP client succeeded
 if [ $? -eq 0 ]; then
-  echo "Successfully parsed input file ..."
+  true # Successfully parsed input file
 else
   echo "Could not parse input file ..."
   cat $INPUT_ABSPATH.log

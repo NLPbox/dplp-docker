@@ -2,9 +2,11 @@ sudo: required
 
 services:
   - docker
+  - docker-compose
 
 install:
-  - docker build -t dplp .
+  - docker-compose build
 
 script:
-  - docker run --entrypoint=/bin/bash -ti dplp -c py.test test_dplp.py
+  - docker start dplpdocker_corenlp_1
+  - docker run --net host --entrypoint=/bin/bash -ti dplpdocker_dplp -c py.test test_dplp.py
