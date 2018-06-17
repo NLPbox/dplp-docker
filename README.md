@@ -11,6 +11,16 @@ This docker container allows you to build, install and run the
 
 ## Building / Installing DPLP
 
+DPLP uses CoreNLP to generate parse trees from the input. We will run
+it as a server, so that the language models only have to be loaded once:
+
+```
+docker run -p 9000:9000 nlpbox/corenlp:3.9.1
+```
+
+You can check that it runs correctly by visiting [http://localhost:9000]
+in your browser. Now you can install dplp-docker:
+
 ```
 git clone https://github.com/NLPbox/dplp-docker
 cd dplp-docker
@@ -19,12 +29,19 @@ docker build -t dplp .
 
 ## Running DPLP
 
-To test if parser works, just run ``docker run dplp``.
+To test if parser works, just run ``docker run --net host dplp``.
 To run the parser on the file ``/tmp/input.txt`` on your
 local machine, run:
 
 ```
-docker run -v /tmp:/tmp -ti dplp /tmp/input.txt
+docker run --net host -v /tmp:/tmp -ti dplp /tmp/input.txt
+```
+
+If you run CoreNLP on a different host, then you'll need to set the
+`CORENLP_ENDPOINT` variable, e.g.
+
+```
+docker run -e CORENLP_ENDPOINT=http://example.com:9000 --net host -v /tmp:/tmp -ti dplp /tmp/input.txt
 ```
 
 ## Example Input
