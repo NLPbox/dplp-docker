@@ -41,4 +41,5 @@ python segmenter.py $INPUT_DIRPATH &>> $INPUT_ABSPATH.log
 python rstparser.py $INPUT_DIRPATH True &>> $INPUT_ABSPATH.log
 
 # DPLPs output comprises of several files, but we'll handle them as one
-cat $INPUT_ABSPATH.merge $INPUT_ABSPATH.parsetree
+cat $INPUT_ABSPATH.merge $INPUT_ABSPATH.parsetree > complete_output.txt
+cat complete_output.txt
