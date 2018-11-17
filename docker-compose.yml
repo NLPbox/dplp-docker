@@ -1,9 +1,9 @@
 version: '3.3'
 services:
   corenlp:
-    image: "nlpbox/corenlp:3.9.1"
+    image: "nlpbox/corenlp:3.9.2"
     environment:
-      - JAVA_XMX=3g
+      - JAVA_XMX=4g
     ports:
       - "9000:9000"
   dplp:

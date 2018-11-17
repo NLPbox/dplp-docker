@@ -15,7 +15,7 @@ DPLP uses CoreNLP to generate parse trees from the input. We will run
 it as a server, so that the language models only have to be loaded once:
 
 ```
-docker run -p 9000:9000 nlpbox/corenlp:3.9.1
+docker run -p 9000:9000 nlpbox/corenlp:3.9.2
 ```
 
 You can check that it runs correctly by visiting [http://localhost:9000]
