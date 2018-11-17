@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+# set -x
 
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INPUT_ABSPATH=$(readlink -e $1)
@@ -40,8 +40,5 @@ python segmenter.py $INPUT_DIRPATH &>> $INPUT_ABSPATH.log
 # NOTE: this loads a model on startup, so idealy this would be a service of its own
 python rstparser.py $INPUT_DIRPATH True &>> $INPUT_ABSPATH.log
 
-# To construct RST trees out of DPLPs output, you'll need to look at
-# the last column of the .merge file and the .brackets file.
-# Alternatively, you can use the nltk Tree's that my modified code writes to the .parsetree file.
-cat $INPUT_ABSPATH.merge output_break.txt $INPUT_ABSPATH.brackets > complete_output.txt
-cat complete_output.txt
+# DPLPs output comprises of several files, but we'll handle them as one
+cat $INPUT_ABSPATH.merge $INPUT_ABSPATH.parsetree
