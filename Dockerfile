@@ -1,4 +1,7 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
+
+# avoid tzdata/debconf error: unable to initialize frontend: Dialog
+ENV TERM=xterm TZ=Europe/Berlin DEBIAN_FRONTEND=noninteractive
 
 # We can't use nltk from the repos, as it has a nltk tree drawing bug
 RUN apt-get update -y && \
